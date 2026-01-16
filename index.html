@@ -1,0 +1,2393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vihaan Kumar Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            min-height: 100dvh;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            overflow: hidden;
+            position: fixed;
+            inset: 0;
+        }
+
+        .container {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: #000;
+            overflow: hidden;
+        }
+        
+        #slide {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* ============ CARD STYLES - GPU ACCELERATED ============ */
+        
+        .container #slide .item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        border-radius 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            
+            will-change: transform, opacity;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .container #slide .item:nth-child(1) {
+            transform: translateX(0) translateY(0) scale(1) translateZ(0);
+            border-radius: 0;
+            z-index: 1;
+            opacity: 1;
+        }
+
+        .container #slide .item:nth-child(1)::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(0, 0, 0, 0.5) 50%,
+                rgba(0, 0, 0, 0.9) 100%
+            );
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .container #slide .item:nth-child(2) {
+            transform: translateX(calc(100vw - 720px)) translateY(calc(50vh - 170px)) scale(0.22) translateZ(0);
+            transform-origin: top left;
+            border-radius: 20px;
+            z-index: 12;
+            opacity: 1;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+        
+        .container #slide .item:nth-child(3) {
+            transform: translateX(calc(100vw - 480px)) translateY(calc(50vh - 170px)) scale(0.22) translateZ(0);
+            transform-origin: top left;
+            border-radius: 20px;
+            z-index: 11;
+            opacity: 1;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+        
+        .container #slide .item:nth-child(4) {
+            transform: translateX(calc(100vw - 240px)) translateY(calc(50vh - 170px)) scale(0.22) translateZ(0);
+            transform-origin: top left;
+            border-radius: 20px;
+            z-index: 10;
+            opacity: 1;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+        
+        .container #slide .item:nth-child(n + 5) {
+            transform: translateX(calc(100vw - 100px)) translateY(calc(50vh - 170px)) scale(0.22) translateZ(0);
+            transform-origin: top left;
+            border-radius: 20px;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9;
+        }
+
+        .container #slide .item:nth-child(2):hover,
+        .container #slide .item:nth-child(3):hover,
+        .container #slide .item:nth-child(4):hover {
+            transform: translateX(calc(100vw - 720px)) translateY(calc(50vh - 180px)) scale(0.23) translateZ(0);
+            box-shadow: 0 35px 60px rgba(0,0,0,0.6);
+        }
+
+        .container #slide .item:nth-child(3):hover {
+            transform: translateX(calc(100vw - 480px)) translateY(calc(50vh - 180px)) scale(0.23) translateZ(0);
+        }
+
+        .container #slide .item:nth-child(4):hover {
+            transform: translateX(calc(100vw - 240px)) translateY(calc(50vh - 180px)) scale(0.23) translateZ(0);
+        }
+
+        .container.scrolling #slide .item:nth-child(2),
+        .container.scrolling #slide .item:nth-child(3),
+        .container.scrolling #slide .item:nth-child(4) {
+            opacity: 0;
+            transform: translateX(100vw) translateY(calc(50vh - 170px)) scale(0.22) translateZ(0);
+            pointer-events: none;
+        }
+
+        .container.scrolling .buttons {
+            opacity: 0;
+            transform: translateX(-50%) translateY(30px) translateZ(0);
+            pointer-events: none;
+        }
+
+        /* ============ VIDEO BACKGROUND ============ */
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .video-background video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+
+        .video-background::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.4) 0%,
+                rgba(0, 0, 0, 0.6) 50%,
+                rgba(0, 0, 0, 0.95) 100%
+            );
+            z-index: 1;
+        }
+
+        .item.video-item::before {
+            display: none !important;
+        }
+
+        /* ============ CONTENT STYLES ============ */
+        
+        .item .content {
+            position: absolute;
+            inset: 0;
+            padding: 60px;
+            text-align: left;
+            color: #eee;
+            display: none;
+            z-index: 2;
+        }
+
+        .container #slide .item:nth-child(1) .content {
+            display: block;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+        }
+        
+        .container #slide .item:nth-child(1) .content::-webkit-scrollbar { 
+            display: none; 
+        }
+
+        .content .spacer {
+            height: 55vh;
+            min-height: 300px;
+            width: 100%;
+        }
+
+        .content .name, 
+        .content .des, 
+        .content button.see-more,
+        .about-section {
+            opacity: 0;
+            transform: translateY(30px) translateZ(0);
+        }
+
+        .container #slide .item:nth-child(1) .content .name {
+            font-size: clamp(40px, 8vw, 70px);
+            font-weight: 800;
+            line-height: 1.1;
+            text-shadow: 0 5px 20px rgba(0,0,0,0.7);
+            margin-bottom: 15px;
+            animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+        }
+
+        .container #slide .item:nth-child(1) .content .des {
+            font-size: clamp(14px, 2vw, 20px);
+            margin-bottom: 25px;
+            background: rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .container #slide .item:nth-child(1) .content button.see-more {
+            padding: 15px 35px;
+            border: none;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+            margin-bottom: 40px;
+            animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .content button.see-more:hover {
+            transform: scale(1.05) translateY(-3px) translateZ(0);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .container #slide .item:nth-child(1) .about-section {
+            animation: fadeSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) translateZ(0);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) translateZ(0);
+            }
+        }
+
+        /* ============ ABOUT SECTION ============ */
+        
+        .about-section {
+            max-width: 1200px;
+            margin-bottom: 100px;
+        }
+
+        .about-header {
+            margin-bottom: 30px;
+        }
+
+        .about-header h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .about-header h2 i {
+            -webkit-text-fill-color: #667eea;
+        }
+
+        .about-intro {
+            font-size: clamp(16px, 2.5vw, 22px);
+            line-height: 1.9;
+            color: #e0e0e0;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border-left: 5px solid #667eea;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .about-intro span {
+            color: #a78bfa;
+            font-weight: 600;
+        }
+
+        .passion-text {
+            font-size: clamp(15px, 2vw, 19px);
+            line-height: 2;
+            color: #b0b0b0;
+            margin-bottom: 50px;
+        }
+
+        .passion-text .highlight {
+            color: #f472b6;
+            font-weight: 600;
+        }
+
+        /* ============ SKILLS SECTION ============ */
+        
+        .skills-section {
+            margin-bottom: 50px;
+        }
+
+        .skills-section > h3 {
+            font-size: clamp(24px, 4vw, 32px);
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #fff;
+        }
+
+        .skill-category {
+            margin-bottom: 30px;
+            padding: 30px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-category:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-5px) translateZ(0);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+        }
+
+        .skill-category h4 {
+            font-size: clamp(18px, 2.5vw, 22px);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .coding-skills h4 { color: #60a5fa; }
+        .design-skills h4 { color: #f472b6; }
+        .video-skills h4 { color: #34d399; }
+
+        .tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .tool-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 24px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50px;
+            font-size: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: default;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .tool-item:hover {
+            transform: scale(1.05) translateZ(0);
+            background: rgba(255,255,255,0.15);
+        }
+
+        .tool-item i {
+            font-size: 24px;
+        }
+
+        .tool-html i { color: #e34f26; }
+        .tool-css i { color: #1572b6; }
+        .tool-java i { color: #f89820; }
+        .tool-rust i { color: #dea584; }
+        .tool-figma i { color: #f24e1e; }
+        .tool-framer i { color: #0099ff; }
+        .tool-canva i { color: #00c4cc; }
+        .tool-illustrator i { color: #ff9a00; }
+        .tool-davinci i { color: #ff5733; }
+        .tool-finalcut i { color: #999; }
+        .tool-capcut i { color: #00f2ea; }
+        .tool-vn i { color: #ffc107; }
+
+        .coding-skills .tool-item:hover { box-shadow: 0 0 25px rgba(96, 165, 250, 0.3); }
+        .design-skills .tool-item:hover { box-shadow: 0 0 25px rgba(244, 114, 182, 0.3); }
+        .video-skills .tool-item:hover { box-shadow: 0 0 25px rgba(52, 211, 153, 0.3); }
+
+        .scroll-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin: 30px 0 40px 0;
+            padding: 15px 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            font-size: 15px;
+            animation: pulse 2s ease-in-out infinite;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .scroll-hint i {
+            animation: bounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+
+        /* ============ PROJECT CARDS SECTION ============ */
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 1200px;
+        }
+
+        .project-card {
+            position: relative;
+            background: rgba(255,255,255,0.03);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0) translateZ(0);
+            opacity: 0;
+            animation: cardFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes cardFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95) translateZ(0);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1) translateZ(0);
+            }
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02) translateZ(0);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(102, 126, 234, 0.1) 0%,
+                rgba(118, 75, 162, 0.1) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-preview {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .project-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card:hover .project-preview img {
+            transform: scale(1.1);
+        }
+
+        .project-preview-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(0,0,0,0.7) 100%
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover .project-preview-overlay {
+            opacity: 1;
+        }
+
+        .preview-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            transform: scale(0);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .project-card:hover .preview-icon {
+            transform: scale(1);
+        }
+
+        .project-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+            color: #fff;
+            z-index: 2;
+        }
+
+        .project-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            background: rgba(52, 211, 153, 0.2);
+            backdrop-filter: blur(10px);
+            font-size: 12px;
+            font-weight: 600;
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            z-index: 2;
+        }
+
+        .project-status.demo {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+
+        .project-content {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-title i {
+            font-size: 20px;
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tech-tag {
+            padding: 5px 12px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50px;
+            font-size: 12px;
+            color: #ccc;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.2s ease;
+        }
+
+        .tech-tag:hover {
+            background: rgba(255,255,255,0.15);
+            transform: scale(1.05);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 12px;
+        }
+
+        .project-link {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .project-link.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .project-link.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .project-link.secondary {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .project-link.secondary:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-3px);
+        }
+
+        /* Color Accents for Each Card */
+        .project-card.blue { --accent: #60a5fa; }
+        .project-card.purple { --accent: #a78bfa; }
+        .project-card.pink { --accent: #f472b6; }
+        .project-card.green { --accent: #34d399; }
+
+        .project-card.blue .project-number { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .project-card.purple .project-number { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+        .project-card.pink .project-number { background: linear-gradient(135deg, #ec4899, #be185d); }
+        .project-card.green .project-number { background: linear-gradient(135deg, #10b981, #047857); }
+
+        .project-card.blue .project-title i { color: #60a5fa; }
+        .project-card.purple .project-title i { color: #a78bfa; }
+        .project-card.pink .project-title i { color: #f472b6; }
+        .project-card.green .project-title i { color: #34d399; }
+
+        .project-card.blue:hover { box-shadow: 0 30px 60px rgba(96, 165, 250, 0.2); }
+        .project-card.purple:hover { box-shadow: 0 30px 60px rgba(167, 139, 250, 0.2); }
+        .project-card.pink:hover { box-shadow: 0 30px 60px rgba(244, 114, 182, 0.2); }
+        .project-card.green:hover { box-shadow: 0 30px 60px rgba(52, 211, 153, 0.2); }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 26px;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                var(--accent, #667eea),
+                transparent
+            );
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover::after {
+            opacity: 0.5;
+            animation: borderGlow 2s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ============ FIGMA DESIGN CARDS ============ */
+        
+        .figma-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 1200px;
+        }
+
+        .figma-card {
+            position: relative;
+            background: rgba(255,255,255,0.03);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0) translateZ(0);
+            opacity: 0;
+            animation: figmaCardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .figma-card:nth-child(1) { animation-delay: 0.1s; }
+        .figma-card:nth-child(2) { animation-delay: 0.25s; }
+        .figma-card:nth-child(3) { animation-delay: 0.4s; }
+        .figma-card:nth-child(4) { animation-delay: 0.55s; }
+
+        @keyframes figmaCardIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px) rotateX(10deg) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0) scale(1);
+            }
+        }
+
+        .figma-card:hover {
+            transform: translateY(-20px) scale(1.03) translateZ(0);
+            box-shadow: 0 40px 80px rgba(162, 89, 255, 0.3);
+            border-color: rgba(162, 89, 255, 0.4);
+        }
+
+        .figma-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(242, 78, 30, 0.1) 0%,
+                rgba(162, 89, 255, 0.1) 50%,
+                rgba(26, 188, 254, 0.1) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .figma-card:hover::before {
+            opacity: 1;
+        }
+
+        .figma-preview {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .figma-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .figma-card:hover .figma-preview img {
+            transform: scale(1.08);
+        }
+
+        .figma-preview-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                transparent 40%,
+                rgba(0,0,0,0.8) 100%
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .figma-card:hover .figma-preview-overlay {
+            opacity: 1;
+        }
+
+        .figma-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f24e1e 0%, #a259ff 50%, #1abcfe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #fff;
+            transform: scale(0) rotate(-180deg);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 40px rgba(162, 89, 255, 0.5);
+        }
+
+        .figma-card:hover .figma-icon {
+            transform: scale(1) rotate(0deg);
+        }
+
+        .figma-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #f24e1e 0%, #a259ff 50%, #1abcfe 100%);
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            z-index: 3;
+            box-shadow: 0 5px 20px rgba(162, 89, 255, 0.4);
+        }
+
+        .figma-badge i {
+            font-size: 16px;
+        }
+
+        .design-type {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+            z-index: 3;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .figma-content {
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .figma-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .figma-title i {
+            font-size: 24px;
+            color: #a259ff;
+        }
+
+        .figma-description {
+            font-size: 15px;
+            color: #aaa;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .design-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .design-tool {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50px;
+            font-size: 13px;
+            color: #ccc;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .design-tool:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-3px);
+        }
+
+        .design-tool i {
+            font-size: 16px;
+        }
+
+        .design-tool.figma-tool i { color: #f24e1e; }
+        .design-tool.prototype i { color: #1abcfe; }
+        .design-tool.components i { color: #0acf83; }
+        .design-tool.responsive i { color: #ff7262; }
+        .design-tool.auto-layout i { color: #a259ff; }
+
+        .figma-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .figma-link {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 24px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .figma-link.view-design {
+            background: linear-gradient(135deg, #f24e1e 0%, #a259ff 50%, #1abcfe 100%);
+            color: #fff;
+            box-shadow: 0 8px 30px rgba(162, 89, 255, 0.4);
+        }
+
+        .figma-link.view-design:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(162, 89, 255, 0.6);
+        }
+
+        .figma-link.prototype-link {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .figma-link.prototype-link:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-4px);
+        }
+
+        .figma-card::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 27px;
+            background: linear-gradient(
+                90deg,
+                #f24e1e,
+                #ff7262,
+                #a259ff,
+                #1abcfe,
+                #0acf83,
+                #a259ff,
+                #f24e1e
+            );
+            background-size: 300% 100%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .figma-card:hover::after {
+            opacity: 1;
+            animation: figmaBorderFlow 3s linear infinite;
+        }
+
+        @keyframes figmaBorderFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        /* Figma Card Color Variations */
+        .figma-card.purple-theme .figma-title i { color: #a259ff; }
+        .figma-card.blue-theme .figma-title i { color: #1abcfe; }
+        .figma-card.green-theme .figma-title i { color: #0acf83; }
+        .figma-card.orange-theme .figma-title i { color: #f24e1e; }
+
+        .figma-card.purple-theme:hover { box-shadow: 0 40px 80px rgba(162, 89, 255, 0.3); }
+        .figma-card.blue-theme:hover { box-shadow: 0 40px 80px rgba(26, 188, 254, 0.3); }
+        .figma-card.green-theme:hover { box-shadow: 0 40px 80px rgba(10, 207, 131, 0.3); }
+        .figma-card.orange-theme:hover { box-shadow: 0 40px 80px rgba(242, 78, 30, 0.3); }
+
+        /* ============ VIDEO EDITING CARDS ============ */
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            max-width: 1200px;
+        }
+
+        .video-card {
+            position: relative;
+            background: rgba(255,255,255,0.03);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0) translateZ(0);
+            opacity: 0;
+            animation: videoCardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .video-card:nth-child(1) { animation-delay: 0.1s; }
+        .video-card:nth-child(2) { animation-delay: 0.2s; }
+        .video-card:nth-child(3) { animation-delay: 0.3s; }
+        .video-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes videoCardIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .video-card:hover {
+            transform: translateY(-15px) scale(1.02) translateZ(0);
+            box-shadow: 0 30px 60px rgba(255, 87, 51, 0.3);
+            border-color: rgba(255, 87, 51, 0.4);
+        }
+
+        .video-card-preview {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .video-card-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .video-card:hover .video-card-preview img {
+            transform: scale(1.1);
+        }
+
+        .video-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .video-card-overlay {
+            background: rgba(0,0,0,0.6);
+        }
+
+        .play-button {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff5733 0%, #ff8c00 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #fff;
+            box-shadow: 0 10px 40px rgba(255, 87, 51, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover .play-button {
+            transform: scale(1.15);
+            box-shadow: 0 15px 50px rgba(255, 87, 51, 0.7);
+        }
+
+        .play-button i {
+            margin-left: 5px;
+        }
+
+        .video-card-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff5733 0%, #ff8c00 100%);
+            font-size: 12px;
+            font-weight: 600;
+            color: #fff;
+            z-index: 3;
+        }
+
+        .video-card-content {
+            padding: 25px;
+        }
+
+        .video-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .video-card-title i {
+            color: #ff5733;
+        }
+
+        .video-card-description {
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .video-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .video-tool {
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 50px;
+            font-size: 12px;
+            color: #ccc;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ============ CONTACT CARDS ============ */
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+            max-width: 1000px;
+        }
+
+        .contact-card {
+            position: relative;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            overflow: hidden;
+            opacity: 0;
+            animation: contactCardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .contact-card:nth-child(1) { animation-delay: 0.1s; }
+        .contact-card:nth-child(2) { animation-delay: 0.2s; }
+        .contact-card:nth-child(3) { animation-delay: 0.3s; }
+        .contact-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes contactCardIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--contact-color, rgba(255,255,255,0.3));
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--contact-color, #667eea) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .contact-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #fff;
+            background: var(--contact-color, #667eea);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .contact-card:hover .contact-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .contact-info {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .contact-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .contact-arrow {
+            font-size: 20px;
+            color: #666;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-card:hover .contact-arrow {
+            color: var(--contact-color, #667eea);
+            transform: translateX(5px);
+        }
+
+        /* Contact Card Colors */
+        .contact-card.email { --contact-color: #ea4335; }
+        .contact-card.instagram { --contact-color: #e4405f; }
+        .contact-card.pinterest { --contact-color: #bd081c; }
+        .contact-card.github { --contact-color: #333; }
+
+        /* ============ NAVIGATION BUTTONS ============ */
+        
+        .buttons {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%) translateZ(0);
+            z-index: 100;
+            display: flex;
+            gap: 20px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .buttons button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #fff;
+            cursor: pointer;
+            font-size: 20px;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .buttons button:hover {
+            background: #fff;
+            color: #000;
+            transform: scale(1.1) translateZ(0);
+            border-color: #fff;
+        }
+
+        .buttons button:active {
+            transform: scale(0.95) translateZ(0);
+        }
+
+        /* ============ RESPONSIVE ============ */
+        
+        @media (max-width: 1400px) {
+            .container #slide .item:nth-child(2) {
+                transform: translateX(calc(100vw - 650px)) translateY(calc(50vh - 150px)) scale(0.20) translateZ(0);
+            }
+            .container #slide .item:nth-child(3) {
+                transform: translateX(calc(100vw - 435px)) translateY(calc(50vh - 150px)) scale(0.20) translateZ(0);
+            }
+            .container #slide .item:nth-child(4) {
+                transform: translateX(calc(100vw - 220px)) translateY(calc(50vh - 150px)) scale(0.20) translateZ(0);
+            }
+            .container #slide .item:nth-child(2):hover {
+                transform: translateX(calc(100vw - 650px)) translateY(calc(50vh - 160px)) scale(0.21) translateZ(0);
+            }
+            .container #slide .item:nth-child(3):hover {
+                transform: translateX(calc(100vw - 435px)) translateY(calc(50vh - 160px)) scale(0.21) translateZ(0);
+            }
+            .container #slide .item:nth-child(4):hover {
+                transform: translateX(calc(100vw - 220px)) translateY(calc(50vh - 160px)) scale(0.21) translateZ(0);
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .container #slide .item:nth-child(2) {
+                transform: translateX(calc(100vw - 560px)) translateY(calc(50vh - 135px)) scale(0.18) translateZ(0);
+            }
+            .container #slide .item:nth-child(3) {
+                transform: translateX(calc(100vw - 375px)) translateY(calc(50vh - 135px)) scale(0.18) translateZ(0);
+            }
+            .container #slide .item:nth-child(4) {
+                transform: translateX(calc(100vw - 190px)) translateY(calc(50vh - 135px)) scale(0.18) translateZ(0);
+            }
+            
+            .projects-grid,
+            .figma-grid,
+            .video-grid,
+            .contact-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .container #slide .item:nth-child(2) {
+                transform: translateX(calc(100vw - 380px)) translateY(calc(50vh - 120px)) scale(0.16) translateZ(0);
+            }
+            .container #slide .item:nth-child(3) {
+                transform: translateX(calc(100vw - 195px)) translateY(calc(50vh - 120px)) scale(0.16) translateZ(0);
+            }
+            .container #slide .item:nth-child(4) {
+                opacity: 0;
+                pointer-events: none;
+            }
+            .content {
+                padding: 40px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 25px !important;
+            }
+            
+            .content .spacer {
+                height: 45vh;
+                min-height: 200px;
+            }
+            
+            .about-intro {
+                padding: 20px;
+            }
+            
+            .skill-category {
+                padding: 20px;
+            }
+            
+            .tool-item {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+            
+            .tool-item i {
+                font-size: 20px;
+            }
+            
+            .container #slide .item:nth-child(2),
+            .container #slide .item:nth-child(3),
+            .container #slide .item:nth-child(4) {
+                opacity: 0;
+                pointer-events: none;
+            }
+            
+            .buttons {
+                bottom: 25px;
+            }
+            
+            .buttons button {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+            
+            .projects-grid,
+            .figma-grid,
+            .video-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-preview,
+            .figma-preview {
+                height: 180px;
+            }
+            
+            .project-content,
+            .figma-content {
+                padding: 20px;
+            }
+            
+            .project-title,
+            .figma-title {
+                font-size: 18px;
+            }
+            
+            .project-links,
+            .figma-links {
+                flex-direction: column;
+            }
+            
+            .contact-card {
+                padding: 20px;
+            }
+            
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+            }
+            
+            .contact-value {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                padding: 20px !important;
+            }
+            
+            .content .spacer {
+                height: 40vh;
+            }
+            
+            .tools-grid {
+                gap: 10px;
+            }
+            
+            .tool-item {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+            
+            .tool-item i {
+                font-size: 18px;
+            }
+            
+            .project-preview,
+            .figma-preview {
+                height: 150px;
+            }
+            
+            .figma-badge {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+        }
+
+        @media (max-height: 500px) {
+            .content .spacer {
+                height: 25vh;
+                min-height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="slide">
+            
+            <!-- 1. HERO SECTION -->
+            <div class="item" style="background-image: url('vihaan.jpeg');">
+                <div class="content">
+                    <div class="spacer"></div>
+                    
+                    <div class="name">Vihaan Kumar</div>
+                    <div class="des">UI/UX Designer • Frontend Dev • Video Editor • Bug Hunter</div>
+                    
+                    <button class="see-more">Scroll to Know Me <i class="fa-solid fa-arrow-down"></i></button>
+                    
+                    <div class="about-section">
+                        <div class="about-header">
+                            <h2><i class="fa-solid fa-user-astronaut"></i> About Me</h2>
+                        </div>
+                        
+                        <div class="about-intro">
+                            <p>Hey there! I'm <span>Vihaan Kumar</span>, currently pursuing <span>BCA at Chandigarh University</span>. I'm a passionate creator who thrives at the intersection of technology and design.</p>
+                        </div>
+                        
+                        <p class="passion-text">
+                            <i class="fa-solid fa-bug" style="color: #f472b6; margin-right: 8px;"></i> 
+                            My passion lies in <span class="highlight">hunting bugs</span> and crafting exceptional <span class="highlight">UI/UX experiences</span>. 
+                            <br><br>
+                            <i class="fa-solid fa-wand-magic-sparkles" style="color: #667eea; margin-right: 8px;"></i> 
+                            I love to create <span class="highlight">stunning websites</span> that not only look beautiful but also provide seamless user experiences. From concept to code, I bring ideas to life!
+                        </p>
+
+                        <div class="scroll-hint">
+                            <i class="fa-solid fa-computer-mouse"></i> Scroll down to explore my skills
+                        </div>
+
+                        <div class="skills-section">
+                            <h3><i class="fa-solid fa-rocket"></i> My Tech Arsenal</h3>
+                            
+                            <div class="skill-category coding-skills">
+                                <h4><i class="fa-solid fa-code"></i> Programming & Development</h4>
+                                <div class="tools-grid">
+                                    <div class="tool-item tool-html">
+                                        <i class="fa-brands fa-html5"></i>
+                                        <span>HTML5</span>
+                                    </div>
+                                    <div class="tool-item tool-css">
+                                        <i class="fa-brands fa-css3-alt"></i>
+                                        <span>CSS3</span>
+                                    </div>
+                                    <div class="tool-item tool-java">
+                                        <i class="fa-brands fa-java"></i>
+                                        <span>Java</span>
+                                    </div>
+                                    <div class="tool-item tool-rust">
+                                        <i class="fa-brands fa-rust"></i>
+                                        <span>Rust</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-category design-skills">
+                                <h4><i class="fa-solid fa-palette"></i> Design & Prototyping</h4>
+                                <div class="tools-grid">
+                                    <div class="tool-item tool-figma">
+                                        <i class="fa-brands fa-figma"></i>
+                                        <span>Figma</span>
+                                    </div>
+                                    <div class="tool-item tool-framer">
+                                        <i class="fa-solid fa-f"></i>
+                                        <span>Framer</span>
+                                    </div>
+                                    <div class="tool-item tool-canva">
+                                        <i class="fa-solid fa-c"></i>
+                                        <span>Canva</span>
+                                    </div>
+                                    <div class="tool-item tool-illustrator">
+                                        <i class="fa-solid fa-pen-nib"></i>
+                                        <span>Adobe Illustrator</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="skill-category video-skills">
+                                <h4><i class="fa-solid fa-film"></i> Video Editing & Motion</h4>
+                                <div class="tools-grid">
+                                    <div class="tool-item tool-davinci">
+                                        <i class="fa-solid fa-video"></i>
+                                        <span>DaVinci Resolve</span>
+                                    </div>
+                                    <div class="tool-item tool-finalcut">
+                                        <i class="fa-brands fa-apple"></i>
+                                        <span>Final Cut Pro</span>
+                                    </div>
+                                    <div class="tool-item tool-capcut">
+                                        <i class="fa-solid fa-scissors"></i>
+                                        <span>CapCut</span>
+                                    </div>
+                                    <div class="tool-item tool-vn">
+                                        <i class="fa-solid fa-clapperboard"></i>
+                                        <span>VN Editor</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. PROJECTS SECTION -->
+            <div class="item" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1920&auto=format&fit=crop');">
+                <div class="content">
+                    <div class="spacer"></div>
+                    <div class="name">MY PROJECTS</div>
+                    <div class="des">Web Development & Design Showcase</div>
+                    <button class="see-more">Explore Projects <i class="fa-solid fa-arrow-down"></i></button>
+                    
+                    <div class="about-section">
+                        <div class="about-header">
+                            <h2><i class="fa-solid fa-code-branch"></i> Featured Work</h2>
+                        </div>
+                        
+                        <div class="projects-grid">
+                            
+                            <!-- Project 1 -->
+                            <div class="project-card blue">
+                                <div class="project-preview">
+                                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop" alt="Portfolio Preview">
+                                    <span class="project-number">01</span>
+                                    <span class="project-status">Live</span>
+                                    <div class="project-preview-overlay">
+                                        <div class="preview-icon">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <h3 class="project-title">
+                                        <i class="fa-solid fa-user-astronaut"></i>
+                                        Personal Portfolio
+                                    </h3>
+                                    <p class="project-description">
+                                        My personal portfolio website showcasing my skills, projects, and journey as a developer and designer.
+                                    </p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">HTML5</span>
+                                        <span class="tech-tag">CSS3</span>
+                                        <span class="tech-tag">JavaScript</span>
+                                        <span class="tech-tag">Responsive</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://nobody30-byte.github.io/vihaan.github.io/" target="_blank" class="project-link primary">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                            Live Demo
+                                        </a>
+                                        <a href="https://github.com/nobody30-byte/vihaan.github.io" target="_blank" class="project-link secondary">
+                                            <i class="fa-brands fa-github"></i>
+                                            Code
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 2 -->
+                            <div class="project-card purple">
+                                <div class="project-preview">
+                                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=800&auto=format&fit=crop" alt="Modern Portfolio Preview">
+                                    <span class="project-number">02</span>
+                                    <span class="project-status demo">Demo</span>
+                                    <div class="project-preview-overlay">
+                                        <div class="preview-icon">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <h3 class="project-title">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                        Modern Website Demo
+                                    </h3>
+                                    <p class="project-description">
+                                        A modern, sleek website template with contemporary design patterns and glassmorphism effects.
+                                    </p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">HTML5</span>
+                                        <span class="tech-tag">CSS3</span>
+                                        <span class="tech-tag">Animations</span>
+                                        <span class="tech-tag">Glassmorphism</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://nobody30-byte.github.io/modern-website-demo-/" target="_blank" class="project-link primary">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                            Live Demo
+                                        </a>
+                                        <a href="https://github.com/nobody30-byte/modern-website-demo-" target="_blank" class="project-link secondary">
+                                            <i class="fa-brands fa-github"></i>
+                                            Code
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 3 -->
+                            <div class="project-card pink">
+                                <div class="project-preview">
+                                    <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=800&auto=format&fit=crop" alt="Shopping Website Preview">
+                                    <span class="project-number">03</span>
+                                    <span class="project-status demo">Demo</span>
+                                    <div class="project-preview-overlay">
+                                        <div class="preview-icon">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <h3 class="project-title">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                        Shopping Website Demo
+                                    </h3>
+                                    <p class="project-description">
+                                        An e-commerce website demo with product listings and modern UI for online stores.
+                                    </p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">HTML5</span>
+                                        <span class="tech-tag">CSS3</span>
+                                        <span class="tech-tag">JavaScript</span>
+                                        <span class="tech-tag">E-Commerce</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://nobody30-byte.github.io/shopping-website-demo-/" target="_blank" class="project-link primary">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                            Live Demo
+                                        </a>
+                                        <a href="https://github.com/nobody30-byte/shopping-website-demo-" target="_blank" class="project-link secondary">
+                                            <i class="fa-brands fa-github"></i>
+                                            Code
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Project 4 -->
+                            <div class="project-card green">
+                                <div class="project-preview">
+                                    <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=800&auto=format&fit=crop" alt="Portfolio Demo Preview">
+                                    <span class="project-number">04</span>
+                                    <span class="project-status demo">Demo</span>
+                                    <div class="project-preview-overlay">
+                                        <div class="preview-icon">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-content">
+                                    <h3 class="project-title">
+                                        <i class="fa-solid fa-briefcase"></i>
+                                        Portfolio Demo
+                                    </h3>
+                                    <p class="project-description">
+                                        A clean and professional portfolio template designed for developers and designers.
+                                    </p>
+                                    <div class="tech-stack">
+                                        <span class="tech-tag">HTML5</span>
+                                        <span class="tech-tag">CSS3</span>
+                                        <span class="tech-tag">Responsive</span>
+                                        <span class="tech-tag">Portfolio</span>
+                                    </div>
+                                    <div class="project-links">
+                                        <a href="https://ravirk1347-arch.github.io/portfolio-ravi-/" target="_blank" class="project-link primary">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                            Live Demo
+                                        </a>
+                                        <a href="https://github.com/ravirk1347-arch/portfolio-ravi-" target="_blank" class="project-link secondary">
+                                            <i class="fa-brands fa-github"></i>
+                                            Code
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. FIGMA DESIGN SECTION - WITH BOTH DESIGNS -->
+            <div class="item" style="background-image: url('https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1920&auto=format&fit=crop');">
+                <div class="content">
+                    <div class="spacer"></div>
+                    <div class="name">UI/UX DESIGN</div>
+                    <div class="des">Figma Prototypes & Visual Design</div>
+                    <button class="see-more">View Designs <i class="fa-solid fa-arrow-down"></i></button>
+
+                    <div class="about-section">
+                        <div class="about-header">
+                            <h2><i class="fa-brands fa-figma"></i> Figma Designs</h2>
+                        </div>
+                        
+                        <div class="about-intro">
+                            <p>I create <span>intuitive user interfaces</span> and <span>engaging user experiences</span> using Figma. From wireframes to high-fidelity prototypes, I bring ideas to life with pixel-perfect precision.</p>
+                        </div>
+
+                        <div class="figma-grid">
+                            
+                            <!-- Figma Design 1 - Portfolio Community -->
+                            <div class="figma-card purple-theme">
+                                <div class="figma-preview">
+                                    <img src="figma1.jpeg" alt="Portfolio Community Design">
+                                    <div class="figma-badge">
+                                        <i class="fa-brands fa-figma"></i>
+                                        Figma
+                                    </div>
+                                    <span class="design-type">Portfolio</span>
+                                    <div class="figma-preview-overlay">
+                                        <div class="figma-icon">
+                                            <i class="fa-brands fa-figma"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="figma-content">
+                                    <h3 class="figma-title">
+                                        <i class="fa-solid fa-palette"></i>
+                                        Portfolio Community Design
+                                    </h3>
+                                    <p class="figma-description">
+                                        A stunning portfolio design concept featuring modern aesthetics, clean typography, and engaging visual hierarchy. Perfect for showcasing creative work.
+                                    </p>
+                                    <div class="design-tools">
+                                        <span class="design-tool figma-tool">
+                                            <i class="fa-brands fa-figma"></i>
+                                            Figma
+                                        </span>
+                                        <span class="design-tool components">
+                                            <i class="fa-solid fa-layer-group"></i>
+                                            Components
+                                        </span>
+                                        <span class="design-tool responsive">
+                                            <i class="fa-solid fa-mobile-screen"></i>
+                                            Responsive
+                                        </span>
+                                    </div>
+                                    <div class="figma-links">
+                                        <a href="https://www.figma.com/design/oXlWnoTvN8RN2snTIad44l/Portfolio--Community-?node-id=0-1&t=Rk8ITER9B5U6iJZZ-1" target="_blank" class="figma-link view-design">
+                                            <i class="fa-brands fa-figma"></i>
+                                            View in Figma
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Figma Design 2 - Portfoloio Community (NEW) -->
+                            <div class="figma-card blue-theme">
+                                <div class="figma-preview">
+                                    <img src="figma2.jpeg" alt="Portfoloio Community Design">
+                                    <div class="figma-badge">
+                                        <i class="fa-brands fa-figma"></i>
+                                        Figma
+                                    </div>
+                                    <span class="design-type">Portfolio V2</span>
+                                    <div class="figma-preview-overlay">
+                                        <div class="figma-icon">
+                                            <i class="fa-brands fa-figma"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="figma-content">
+                                    <h3 class="figma-title">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                        Portfoloio Community V2
+                                    </h3>
+                                    <p class="figma-description">
+                                        An enhanced portfolio design with improved user experience, modern layout patterns, and refined visual elements. Features auto-layout and reusable components.
+                                    </p>
+                                    <div class="design-tools">
+                                        <span class="design-tool figma-tool">
+                                            <i class="fa-brands fa-figma"></i>
+                                            Figma
+                                        </span>
+                                        <span class="design-tool auto-layout">
+                                            <i class="fa-solid fa-grip"></i>
+                                            Auto Layout
+                                        </span>
+                                        <span class="design-tool prototype">
+                                            <i class="fa-solid fa-play"></i>
+                                            Interactive
+                                        </span>
+                                        <span class="design-tool components">
+                                            <i class="fa-solid fa-cubes"></i>
+                                            Design System
+                                        </span>
+                                    </div>
+                                    <div class="figma-links">
+                                        <a href="https://www.figma.com/design/waWe7dL9DQagHKtPkRAE1T/Portfoloio--Community-?node-id=0-1&t=hhXKMi1vBnJGmizY-1" target="_blank" class="figma-link view-design">
+                                            <i class="fa-brands fa-figma"></i>
+                                            View in Figma
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Design Process Section -->
+                        <div class="skills-section" style="margin-top: 60px;">
+                            <h3><i class="fa-solid fa-wand-magic-sparkles"></i> My Design Process</h3>
+                            
+                            <div class="skill-category" style="margin-bottom: 20px;">
+                                <h4 style="color: #f24e1e;"><i class="fa-solid fa-magnifying-glass"></i> Research & Discovery</h4>
+                                <p style="color: #aaa; line-height: 1.8;">Understanding user needs, market trends, and project requirements through thorough research and competitor analysis.</p>
+                            </div>
+                            
+                            <div class="skill-category" style="margin-bottom: 20px;">
+                                <h4 style="color: #a259ff;"><i class="fa-solid fa-pencil"></i> Wireframing & Prototyping</h4>
+                                <p style="color: #aaa; line-height: 1.8;">Creating low and high-fidelity wireframes, establishing information architecture, and building interactive prototypes.</p>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <h4 style="color: #1abcfe;"><i class="fa-solid fa-paintbrush"></i> Visual Design & Handoff</h4>
+                                <p style="color: #aaa; line-height: 1.8;">Designing pixel-perfect interfaces with consistent design systems and preparing developer-ready assets.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. VIDEO EDITING - WITH LIVE VIDEO BACKGROUND -->
+            <div class="item video-item">
+                <div class="video-background">
+                    <video autoplay muted loop playsinline>
+                        <source src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-702-large.mp4" type="video/mp4">
+                    </video>
+                </div>
+                
+                <div class="content">
+                    <div class="spacer"></div>
+                    <div class="name">VIDEO EDITING</div>
+                    <div class="des">Cinematography & Motion Graphics</div>
+                    <button class="see-more">Watch Showreel <i class="fa-solid fa-arrow-down"></i></button>
+
+                    <div class="about-section">
+                        <div class="about-header">
+                            <h2><i class="fa-solid fa-film"></i> Video Production</h2>
+                        </div>
+                        
+                        <div class="about-intro">
+                            <p>I bring stories to life through <span>cinematic video editing</span> and <span>motion graphics</span>. From commercials to vlogs, I create visually stunning content that captivates audiences.</p>
+                        </div>
+
+                        <div class="video-grid">
+                            
+                            <div class="video-card">
+                                <div class="video-card-preview">
+                                    <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop" alt="Commercial Edit">
+                                    <div class="video-card-badge">
+                                        <i class="fa-solid fa-film"></i>
+                                        Commercial
+                                    </div>
+                                    <div class="video-card-overlay">
+                                        <div class="play-button">
+                                            <i class="fa-solid fa-play"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-card-content">
+                                    <h3 class="video-card-title">
+                                        <i class="fa-solid fa-ad"></i>
+                                        Commercial Edits
+                                    </h3>
+                                    <p class="video-card-description">
+                                        Professional commercial videos with color grading, motion graphics, and impactful storytelling.
+                                    </p>
+                                    <div class="video-tools">
+                                        <span class="video-tool">DaVinci Resolve</span>
+                                        <span class="video-tool">Color Grading</span>
+                                        <span class="video-tool">Motion Graphics</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="video-card">
+                                <div class="video-card-preview">
+                                    <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=800&auto=format&fit=crop" alt="Travel Vlog">
+                                    <div class="video-card-badge">
+                                        <i class="fa-solid fa-plane"></i>
+                                        Vlog
+                                    </div>
+                                    <div class="video-card-overlay">
+                                        <div class="play-button">
+                                            <i class="fa-solid fa-play"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-card-content">
+                                    <h3 class="video-card-title">
+                                        <i class="fa-solid fa-plane"></i>
+                                        Travel Vlogs
+                                    </h3>
+                                    <p class="video-card-description">
+                                        Cinematic travel content with professional color grading and immersive sound design.
+                                    </p>
+                                    <div class="video-tools">
+                                        <span class="video-tool">Final Cut Pro</span>
+                                        <span class="video-tool">Cinematic</span>
+                                        <span class="video-tool">Sound Design</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="video-card">
+                                <div class="video-card-preview">
+                                    <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=800&auto=format&fit=crop" alt="Music Video">
+                                    <div class="video-card-badge">
+                                        <i class="fa-solid fa-music"></i>
+                                        Music
+                                    </div>
+                                    <div class="video-card-overlay">
+                                        <div class="play-button">
+                                            <i class="fa-solid fa-play"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-card-content">
+                                    <h3 class="video-card-title">
+                                        <i class="fa-solid fa-music"></i>
+                                        Music Videos
+                                    </h3>
+                                    <p class="video-card-description">
+                                        Creative music video edits with visual effects, transitions, and beat-synced cuts.
+                                    </p>
+                                    <div class="video-tools">
+                                        <span class="video-tool">CapCut</span>
+                                        <span class="video-tool">VFX</span>
+                                        <span class="video-tool">Beat Sync</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="video-card">
+                                <div class="video-card-preview">
+                                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop" alt="Social Media">
+                                    <div class="video-card-badge">
+                                        <i class="fa-solid fa-hashtag"></i>
+                                        Social
+                                    </div>
+                                    <div class="video-card-overlay">
+                                        <div class="play-button">
+                                            <i class="fa-solid fa-play"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="video-card-content">
+                                    <h3 class="video-card-title">
+                                        <i class="fa-solid fa-share-nodes"></i>
+                                        Social Media Content
+                                    </h3>
+                                    <p class="video-card-description">
+                                        Engaging short-form content optimized for Instagram Reels, TikTok, and YouTube Shorts.
+                                    </p>
+                                    <div class="video-tools">
+                                        <span class="video-tool">VN Editor</span>
+                                        <span class="video-tool">Trending</span>
+                                        <span class="video-tool">Viral Edits</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="skills-section" style="margin-top: 60px;">
+                            <h3><i class="fa-solid fa-desktop"></i> Software I Use</h3>
+                            <div class="tools-grid">
+                                <div class="tool-item tool-davinci">
+                                    <i class="fa-solid fa-video"></i>
+                                    <span>DaVinci Resolve</span>
+                                </div>
+                                <div class="tool-item tool-finalcut">
+                                    <i class="fa-brands fa-apple"></i>
+                                    <span>Final Cut Pro</span>
+                                </div>
+                                <div class="tool-item tool-capcut">
+                                    <i class="fa-solid fa-scissors"></i>
+                                    <span>CapCut</span>
+                                </div>
+                                <div class="tool-item tool-vn">
+                                    <i class="fa-solid fa-clapperboard"></i>
+                                    <span>VN Editor</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. CONTACT -->
+            <div class="item" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920&auto=format&fit=crop');">
+                <div class="content">
+                    <div class="spacer"></div>
+                    <div class="name">CONTACT</div>
+                    <div class="des">Let's Connect & Collaborate</div>
+                    <button class="see-more">Get in Touch <i class="fa-solid fa-arrow-down"></i></button>
+
+                    <div class="about-section">
+                        <div class="about-header">
+                            <h2><i class="fa-solid fa-handshake"></i> Let's Work Together</h2>
+                        </div>
+                        
+                        <div class="about-intro">
+                            <p>Have a project in mind? Want to collaborate? Or just want to say hi? <span>I'd love to hear from you!</span> Feel free to reach out through any of the platforms below.</p>
+                        </div>
+                        
+                        <div class="contact-grid">
+                            
+                            <a href="mailto:kumar9548vihaan@gmail.com" class="contact-card email">
+                                <div class="contact-icon">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Email</div>
+                                    <div class="contact-value">kumar9548vihaan@gmail.com</div>
+                                </div>
+                                <i class="fa-solid fa-arrow-right contact-arrow"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/vihaankumar1730/" target="_blank" class="contact-card instagram">
+                                <div class="contact-icon">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Instagram</div>
+                                    <div class="contact-value">@vihaankumar1730</div>
+                                </div>
+                                <i class="fa-solid fa-arrow-right contact-arrow"></i>
+                            </a>
+
+                            <a href="https://pin.it/1f9plp4KJ" target="_blank" class="contact-card pinterest">
+                                <div class="contact-icon">
+                                    <i class="fa-brands fa-pinterest"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-label">Pinterest</div>
+                                    <div class="contact-value">View My Pins</div>
+                                </div>
+                                <i class="fa-solid fa-arrow-right contact-arrow"></i>
+                            </a>
+
+                            <a href="https://github.com/nobody30-byte" target="_blank" class="contact-card github">
+                                <div class="contact-icon">
+                                    <i class="fa-brands fa-github"></i>
+                                </div>
+                                <div class="contact-info">
+                                    <div class="contact-label">GitHub</div>
+                                    <div class="contact-value">@nobody30-byte</div>
+                                </div>
+                                <i class="fa-solid fa-arrow-right contact-arrow"></i>
+                            </a>
+
+                        </div>
+
+                        <div class="skill-category" style="margin-top: 50px;">
+                            <h4 style="color: #667eea;"><i class="fa-solid fa-location-dot"></i> Location</h4>
+                            <p style="color: #ccc; margin: 15px 0; font-size: 18px;">
+                                <i class="fa-solid fa-university" style="margin-right: 12px; color: #a78bfa;"></i> 
+                                Chandigarh University, Punjab, India
+                            </p>
+                            <p style="color: #aaa; font-size: 15px; line-height: 1.8;">
+                                Currently pursuing BCA and always open to new opportunities, collaborations, and interesting projects. Let's create something amazing together!
+                            </p>
+                        </div>
+
+                        <div style="margin-top: 40px; text-align: center;">
+                            <a href="mailto:kumar9548vihaan@gmail.com" style="display: inline-flex; align-items: center; gap: 12px; padding: 18px 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; text-decoration: none; border-radius: 50px; font-size: 18px; font-weight: 600; box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                Send Me a Message
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="buttons">
+            <button id="prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <button id="next"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        const container = document.querySelector('.container');
+        const slide = document.getElementById('slide');
+        let isAnimating = false;
+        const ANIMATION_DURATION = 500;
+        
+        function navigate(direction) {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            const lists = document.querySelectorAll('.item');
+            
+            if (direction === 'next') {
+                slide.appendChild(lists[0]);
+            } else {
+                slide.prepend(lists[lists.length - 1]);
+            }
+            
+            const activeContent = document.querySelector('.item:nth-child(1) .content');
+            if (activeContent) {
+                activeContent.scrollTop = 0;
+                container.classList.remove('scrolling');
+            }
+            
+            // Re-trigger animations
+            const projectCards = document.querySelectorAll('.item:nth-child(1) .project-card');
+            projectCards.forEach((card, index) => {
+                card.style.animation = 'none';
+                card.offsetHeight;
+                card.style.animation = `cardFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.1}s forwards`;
+            });
+            
+            const figmaCards = document.querySelectorAll('.item:nth-child(1) .figma-card');
+            figmaCards.forEach((card, index) => {
+                card.style.animation = 'none';
+                card.offsetHeight;
+                card.style.animation = `figmaCardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.15}s forwards`;
+            });
+            
+            const videoCards = document.querySelectorAll('.item:nth-child(1) .video-card');
+            videoCards.forEach((card, index) => {
+                card.style.animation = 'none';
+                card.offsetHeight;
+                card.style.animation = `videoCardIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.1}s forwards`;
+            });
+            
+            const contactCards = document.querySelectorAll('.item:nth-child(1) .contact-card');
+            contactCards.forEach((card, index) => {
+                card.style.animation = 'none';
+                card.offsetHeight;
+                card.style.animation = `contactCardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + index * 0.1}s forwards`;
+            });
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, ANIMATION_DURATION);
+        }
+
+        document.getElementById('next').addEventListener('click', () => navigate('next'));
+        document.getElementById('prev').addEventListener('click', () => navigate('prev'));
+
+        function setupScrollDetection() {
+            let ticking = false;
+            
+            const updateScroll = (scrollTop) => {
+                if (scrollTop > 50) {
+                    container.classList.add('scrolling');
+                } else {
+                    container.classList.remove('scrolling');
+                }
+                ticking = false;
+            };
+            
+            const onScroll = function() {
+                if (!ticking) {
+                    requestAnimationFrame(() => updateScroll(this.scrollTop));
+                    ticking = true;
+                }
+            };
+            
+            const attachScrollListener = () => {
+                const activeContent = document.querySelector('.item:nth-child(1) .content');
+                if (activeContent) {
+                    activeContent.addEventListener('scroll', onScroll, { passive: true });
+                }
+            };
+            
+            attachScrollListener();
+            
+            const observer = new MutationObserver(attachScrollListener);
+            observer.observe(slide, { childList: true });
+        }
+
+        setupScrollDetection();
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') navigate('next');
+            else if (e.key === 'ArrowLeft') navigate('prev');
+        });
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isSwiping = false;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            isSwiping = true;
+        }, { passive: true });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isSwiping) return;
+            const diffY = Math.abs(e.touches[0].clientY - touchStartY);
+            const diffX = Math.abs(e.touches[0].clientX - touchStartX);
+            if (diffY > diffX) isSwiping = false;
+        }, { passive: true });
+
+        document.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+            const diff = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(diff) > 60) {
+                navigate(diff < 0 ? 'next' : 'prev');
+            }
+            isSwiping = false;
+        }, { passive: true });
+
+        document.querySelectorAll('.item').forEach(item => {
+            const bg = item.style.backgroundImage;
+            if (bg) {
+                const img = new Image();
+                img.src = bg.slice(5, -2);
+            }
+        });
+    </script>
+</body>
+</html>
